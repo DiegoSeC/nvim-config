@@ -6,7 +6,10 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -52,3 +55,30 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Neotree
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'Toggle Explorer' })
+vim.keymap.set('n', '<leader>o', function()
+  if vim.bo.filetype == 'neo-tree' then
+    vim.cmd.wincmd 'p'
+  else
+    vim.cmd.Neotree 'focus'
+  end
+end, { desc = 'Toggle Explorer Focus' })
+-- end Neotree
+
+-- Barbar
+vim.keymap.set('n', '<leader>bn', '<Cmd>BufferNext<CR>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPrevious<CR>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', '<leader>bb', '<Cmd>BufferPick<CR>', { desc = 'Pick Buffer' })
+vim.keymap.set('n', '<leader>c', '<Cmd>BufferClose<CR>', { desc = 'Close Buffer' })
+vim.keymap.set('n', '<leader>cA', '<Cmd>BufferWipeout<CR>', { desc = 'Close All Buffer' })
+
+-- Package Info
+vim.api.nvim_set_keymap('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>", { silent = true, noremap = true })
+
+-- Comment
+vim.keymap.set('n', '<leader>/', function()
+  require('Comment.api').toggle.linewise.count(vim.v.count1)
+end, { desc = 'Toggle comment line' })
+vim.keymap.set('x', '<leader>/', "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'Toggle comment for selection' })
