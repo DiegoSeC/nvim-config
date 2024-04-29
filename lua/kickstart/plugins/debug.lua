@@ -42,6 +42,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'coreclr',
       },
     }
 
@@ -50,8 +51,8 @@ return {
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-    vim.keymap.set('n', '<leader>B', function()
+    vim.keymap.set('n', '<M-g>', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+    vim.keymap.set('n', '<M-G>', function()
       dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
     end, { desc = 'Debug: Set Breakpoint' })
 
@@ -86,5 +87,40 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+
+    -- Typescript debugging
+    dap.adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        args = {
+          require('mason-registry').get_package('js-debug-adapter'):get_install_path() .. '/js-debug/src/dapDebugServer.js',
+          '${port}',
+        },
+      },
+    }
+
+    local js_config = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+      },
+      {
+        type = 'pwa-node',
+        request = 'attach',
+        name = 'Attach',
+        processId = require('dap.utils').pick_process,
+        cwd = '${workspaceFolder}',
+      },
+    }
+
+    if not dap.configurations.javascript then
+      dap.configurations.javascript = js_config
+    end
   end,
 }
