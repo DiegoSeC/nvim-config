@@ -17,5 +17,6 @@ return {
         event = 'BufWipeout',
       },
     },
+    maximum_length = 30,
   },
 }
