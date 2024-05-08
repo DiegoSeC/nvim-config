@@ -76,6 +76,7 @@ vim.keymap.set('n', '<leader>cA', '<Cmd>BufferWipeout<CR>', { desc = 'Close All 
 
 -- Package Info
 vim.api.nvim_set_keymap('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>np', "<cmd>lua require('package-info').change_version()<cr>", { silent = true, noremap = true })
 
 -- Comment
 vim.keymap.set('n', '<leader>/', function()
