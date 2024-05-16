@@ -68,11 +68,11 @@ end, { desc = 'Toggle Explorer Focus' })
 -- end Neotree
 
 -- Barbar
-vim.keymap.set('n', '<leader>bn', '<Cmd>BufferNext<CR>', { desc = 'Next Buffer' })
-vim.keymap.set('n', '<leader>bp', '<Cmd>BufferPrevious<CR>', { desc = 'Prev Buffer' })
-vim.keymap.set('n', '<leader>bb', '<Cmd>BufferPick<CR>', { desc = 'Pick Buffer' })
-vim.keymap.set('n', '<leader>c', '<Cmd>BufferClose<CR>', { desc = 'Close Buffer' })
-vim.keymap.set('n', '<leader>cA', '<Cmd>BufferWipeout<CR>', { desc = 'Close All Buffer' })
+vim.keymap.set('n', '<leader>bn', '<Cmd>BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
+vim.keymap.set('n', '<leader>bp', '<Cmd>BufferLineCyclePrev<CR>', { desc = 'Prev Buffer' })
+vim.keymap.set('n', '<leader>bb', '<Cmd>BufferLinePick<CR>', { desc = 'Pick Buffer' })
+vim.keymap.set('n', '<leader>c', '<Cmd>BufDel<CR>', { desc = 'Close Buffer' })
+vim.keymap.set('n', '<leader>cA', '<Cmd>BufDelAll<CR>', { desc = 'Close All Buffer' })
 
 -- Package Info
 vim.api.nvim_set_keymap('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>", { silent = true, noremap = true })
