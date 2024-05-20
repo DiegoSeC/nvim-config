@@ -61,7 +61,7 @@ vim.keymap.set('n', '<leader>o', function()
 end, { desc = 'Toggle Explorer Focus' })
 -- end Neotree
 
--- Barbar
+-- BufferLine
 vim.keymap.set('n', '<leader>bn', '<Cmd>BufferLineCycleNext<CR>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<leader>bp', '<Cmd>BufferLineCyclePrev<CR>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', '<leader>bb', '<Cmd>BufferLinePick<CR>', { desc = 'Pick Buffer' })
@@ -77,3 +77,14 @@ vim.keymap.set('n', '<leader>/', function()
   require('Comment.api').toggle.linewise.count(vim.v.count1)
 end, { desc = 'Toggle comment line' })
 vim.keymap.set('x', '<leader>/', "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'Toggle comment for selection' })
+
+-- Copilot
+vim.keymap.set('i', '<Tab>', function()
+  if require('copilot.suggestion').is_visible() then
+    require('copilot.suggestion').accept()
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
+  end
+end, {
+  silent = true,
+})

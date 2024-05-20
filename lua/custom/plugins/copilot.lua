@@ -8,7 +8,7 @@ return {
         auto_trigger = true,
         debounce = 150,
         keymap = {
-          accept = '<Tab>',
+          accept = false,
         },
       },
     }
