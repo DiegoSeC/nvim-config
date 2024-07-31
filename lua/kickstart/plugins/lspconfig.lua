@@ -220,48 +220,6 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
-        omnisharp = {
-          handlers = {
-            ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
-            ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
-            ['textDocument/references'] = require('omnisharp_extended').references_handler,
-            ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
-          },
-          keys = {
-            {
-              'gd',
-              function()
-                require('omnisharp_extended').telescope_lsp_definitions()
-              end,
-              desc = 'Goto Definition',
-            },
-            {
-              'gI',
-              function()
-                require('omnisharp_extended').telescope_lsp_implementations()
-              end,
-              desc = 'Goto Implementation',
-            },
-            {
-              'gD',
-              function()
-                require('omnisharp_extended').telescope_lsp_type_definitions()
-              end,
-              desc = 'Goto Type Definition',
-            },
-            {
-              'gr',
-              function()
-                require('omnisharp_extended').telescope_lsp_references()
-              end,
-              desc = 'Goto References',
-            },
-          },
-          enable_roslyn_analyzers = true,
-          organize_imports_on_format = true,
-          enable_import_completion = true,
-        },
-
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -320,6 +278,8 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
+
+          ['omnisharp'] = require('kickstart.plugins.lsp.omnisharp').setup,
         },
       }
     end,
