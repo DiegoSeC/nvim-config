@@ -4,7 +4,7 @@ return {
   config = function()
     require('lualine').setup {
       options = {
-        theme = 'wombat',
+        theme = 'palenight',
       },
       extensions = { 'neo-tree' },
       sections = {
@@ -19,8 +19,8 @@ return {
           },
         },
         lualine_c = { 'filename' },
-        lualine_x = { 'copilot', 'encoding', 'fileformat', 'filetype' }, -- I added copilot here
-        lualine_y = { 'progress' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' }, -- I added copilot here
+        lualine_y = { 'copilot', 'progress' },
         lualine_z = { 'location' },
       },
     }
