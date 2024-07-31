@@ -190,6 +190,27 @@ return {
               end,
               desc = 'Goto Definition',
             },
+            {
+              'gI',
+              function()
+                require('omnisharp_extended').telescope_lsp_implementations()
+              end,
+              desc = 'Goto Implementation',
+            },
+            {
+              'gD',
+              function()
+                require('omnisharp_extended').telescope_lsp_type_definitions()
+              end,
+              desc = 'Goto Type Definition',
+            },
+            {
+              'gr',
+              function()
+                require('omnisharp_extended').telescope_lsp_references()
+              end,
+              desc = 'Goto References',
+            },
           },
           enable_roslyn_analyzers = true,
           organize_imports_on_format = true,
