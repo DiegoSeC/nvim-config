@@ -279,7 +279,7 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
 
-          ['omnisharp'] = require('kickstart.plugins.lsp.omnisharp').setup,
+          ['omnisharp'] = require('kickstart.lsp.omnisharp').setup,
         },
       }
     end,
