@@ -79,6 +79,6 @@ vim.opt.tabstop = 2
 vim.opt.laststatus = 3
 
 -- Hide Keystrokes
-vim.opt.showcmd = false
+-- vim.opt.showcmd = false
 
 -- vim: ts=2 sts=2 sw=2 et
