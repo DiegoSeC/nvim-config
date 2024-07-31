@@ -37,6 +37,13 @@ return {
         typescript = { { 'prettierd', 'prettier' } },
         javascriptreact = { { 'prettierd', 'prettier' } },
         typescriptreact = { { 'prettierd', 'prettier' } },
+        cs = { 'csharpier' },
+      },
+      formatters = {
+        csharpier = {
+          command = 'dotnet-csharpier',
+          args = { '--write-stdout' },
+        },
       },
     },
   },
