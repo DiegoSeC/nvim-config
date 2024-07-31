@@ -6,6 +6,23 @@ return {
     { 'nvim-tree/nvim-web-devicons', lazy = true },
   },
   opts = {
+    default_component_configs = {
+      git_status = {
+        symbols = {
+          -- Change type
+          added = '✚',
+          deleted = '✖',
+          modified = '󰛿',
+          renamed = '󰁕',
+          -- Status type
+          untracked = '󱞇',
+          ignored = '',
+          unstaged = '󰄱',
+          staged = '',
+          conflict = '',
+        },
+      },
+    },
     close_if_last_window = true,
     autocmds = {
       neotree_refresh = {
