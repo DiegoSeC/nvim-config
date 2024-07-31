@@ -228,8 +228,6 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
-
-          ['omnisharp'] = require('kickstart.lsp.omnisharp').setup,
         },
       }
     end,
