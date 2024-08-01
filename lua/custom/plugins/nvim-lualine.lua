@@ -4,7 +4,7 @@ return {
   config = function()
     require('lualine').setup {
       options = {
-        theme = 'palenight',
+        theme = 'catppuccin',
       },
       extensions = { 'neo-tree' },
       sections = {

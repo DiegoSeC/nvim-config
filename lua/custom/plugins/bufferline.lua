@@ -2,6 +2,7 @@ return {
   'akinsho/bufferline.nvim',
   dependencies = 'nvim-tree/nvim-web-devicons',
   event = 'VeryLazy',
+  after = 'catppuccino.nvim',
   opts = {
     options = {
       -- stylua: ignore
@@ -26,7 +27,11 @@ return {
     },
   },
   config = function(_, opts)
-    require('bufferline').setup(opts)
+    local options = vim.list_extend(opts, {
+      highlights = require('catppuccin.groups.integrations.bufferline').get(),
+    })
+
+    require('bufferline').setup(options)
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd('BufAdd', {
       callback = function()
