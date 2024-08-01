@@ -3,6 +3,16 @@ return {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
+    config = function()
+      require('catppuccin').setup {
+        integrations = {
+          alpha = true,
+          gitsigns = true,
+          neotree = true,
+          which_key = true,
+        },
+      }
+    end,
     init = function()
       vim.cmd.colorscheme 'catppuccin-macchiato'
       vim.cmd.hi 'Comment gui=none'
