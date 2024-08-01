@@ -10,6 +10,8 @@ return {
           gitsigns = true,
           neotree = true,
           which_key = true,
+          noice = true,
+          notify = true,
         },
       }
     end,
