@@ -14,7 +14,7 @@ return {
       }
     end,
     init = function()
-      vim.cmd.colorscheme 'catppuccin-macchiato'
+      vim.cmd.colorscheme 'catppuccin-frappe'
       vim.cmd.hi 'Comment gui=none'
     end,
   },
