@@ -29,15 +29,15 @@ return {
       require('lspkind').init(opts)
     end,
   },
-  {
-    'hrsh7th/nvim-cmp',
-    opts = function(_, opts)
-      if require('core').is_available 'lspkind.nvim' then
-        if not opts.formatting then
-          opts.formatting = {}
-        end
-        opts.formatting.format = require('lspkind').cmp_format(require('core').plugin_opts 'lspkind.nvim')
-      end
-    end,
-  },
+  -- {
+  --   'hrsh7th/nvim-cmp',
+  --   opts = function(_, opts)
+  --     if require('core').is_available 'lspkind.nvim' then
+  --       if not opts.formatting then
+  --         opts.formatting = {}
+  --       end
+  --       opts.formatting.format = require('lspkind').cmp_format(require('core').plugin_opts 'lspkind.nvim')
+  --     end
+  --   end,
+  -- },
 }
