@@ -3,6 +3,7 @@ return {
   dependencies = {
     { 'JoosepAlviste/nvim-ts-context-commentstring', lazy = true, opts = { enable_autocmd = false } },
   },
+  lazy = true,
   keys = function(_, keys)
     local plugin = require('lazy.core.config').spec.plugins['Comment.nvim']
     local opts = require('lazy.core.plugin').values(plugin, 'opts', false)
