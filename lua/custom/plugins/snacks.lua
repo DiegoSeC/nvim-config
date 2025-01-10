@@ -1,11 +1,14 @@
 return {
   'folke/snacks.nvim',
+  priority = 1000,
+  lazy = false,
   ---@type snacks.Config
   opts = {
     animate = {
       -- your animate configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
+      enabled = true,
     },
     bigfile = {
       -- your bigfile configuration comes here
@@ -13,8 +16,14 @@ return {
       -- refer to the configuration section below
       notify = true,
       size = 1.2 * 1024 * 1024,
+      enabled = true,
     },
-    lazygit = {},
+    lazygit = {
+      enabled = true,
+    },
+    dashboard = {
+      enabled = true,
+    },
   },
   keys = {
     {
