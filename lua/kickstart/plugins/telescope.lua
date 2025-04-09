@@ -4,6 +4,24 @@
 -- you do for a plugin at the top level, you can do for a dependency.
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'TelescopeResults',
+  callback = function(ctx)
+    vim.api.nvim_buf_call(ctx.buf, function()
+      vim.fn.matchadd('TelescopeParent', '\t\t.*$')
+      vim.api.nvim_set_hl(0, 'TelescopeParent', { link = 'Comment' })
+    end)
+  end,
+})
+
+local function filenameFirst(_, path)
+  local tail = vim.fs.basename(path)
+  local parent = vim.fs.dirname(path)
+  if parent == '.' then
+    return tail
+  end
+  return string.format('%s\t\t%s', tail, parent)
+end
 
 return {
   { -- Fuzzy Finder (files, lsp, etc)
@@ -69,7 +87,14 @@ return {
             i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           },
         },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            path_display = filenameFirst,
+          },
+          live_grep_args = {
+            path_display = filenameFirst,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -117,7 +142,7 @@ return {
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set('n', '<leader>sfw', function()
+      vim.keymap.set('n', '<leader>sow', function()
         builtin.live_grep {
           grep_open_files = true,
           prompt_title = 'Live Grep in Open Files',
