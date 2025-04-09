@@ -17,10 +17,11 @@ vim.api.nvim_create_autocmd('FileType', {
 local function filenameFirst(_, path)
   local tail = vim.fs.basename(path)
   local parent = vim.fs.dirname(path)
+  local shortParent = vim.fn.pathshorten(parent, 2)
   if parent == '.' then
     return tail
   end
-  return string.format('%s\t\t%s', tail, parent)
+  return string.format('%s\t\t%s', tail, shortParent)
 end
 
 return {
