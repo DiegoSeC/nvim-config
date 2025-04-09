@@ -87,15 +87,7 @@ return {
           mappings = {
             i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           },
-          path_display = { 'smart' },
-        },
-        pickers = {
-          find_files = {
-            path_display = filenameFirst,
-          },
-          live_grep_args = {
-            path_display = filenameFirst,
-          },
+          path_display = filenameFirst,
         },
         extensions = {
           ['ui-select'] = {
