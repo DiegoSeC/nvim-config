@@ -4,31 +4,12 @@
 -- you do for a plugin at the top level, you can do for a dependency.
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'TelescopeResults',
-  callback = function(ctx)
-    vim.api.nvim_buf_call(ctx.buf, function()
-      vim.fn.matchadd('TelescopeParent', '\t\t.*$')
-      vim.api.nvim_set_hl(0, 'TelescopeParent', { link = 'Comment' })
-    end)
-  end,
-})
-
-local function filenameFirst(_, path)
-  local util = require 'telescope.utils'
-  local tail = vim.fs.basename(path)
-  local parent = vim.fs.dirname(path)
-  if parent == '.' then
-    return tail
-  end
-  return string.format('%s\t\t%s', tail, util.path_smart(parent))
-end
 
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
+    branch = 'master',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -88,7 +69,11 @@ return {
           mappings = {
             i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           },
-          path_display = filenameFirst,
+          path_display = {
+            filename_first = {
+              reverse_directories = false,
+            },
+          },
         },
         extensions = {
           ['ui-select'] = {
