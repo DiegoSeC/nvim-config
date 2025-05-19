@@ -54,6 +54,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('RecordingEnter', {
+  desc = 'Set cmdheight to 1 when recording',
+  callback = function()
+    vim.opt.cmdheight = 1
+  end,
+})
+
+vim.api.nvim_create_autocmd('RecordingLeave', {
+  desc = 'Set cmdheight to 0 when not recording',
+  callback = function()
+    vim.opt.cmdheight = 0
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
 
 -- Neotree
