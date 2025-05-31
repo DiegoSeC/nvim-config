@@ -263,10 +263,6 @@ return {
         'eslint-lsp',
         'prettierd',
         'js-debug-adapter',
-        'csharp_ls',
-        'csharp-language-server',
-        'csharpier',
-        'netcoredbg',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
