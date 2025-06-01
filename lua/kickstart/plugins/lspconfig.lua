@@ -255,7 +255,6 @@ return {
         'html',
         'cssls',
         'typescript-language-server',
-        'eslint-lsp',
         'prettierd',
         'js-debug-adapter',
       })
