@@ -10,27 +10,29 @@ return {
   },
   config = function()
     require('codecompanion').setup {
-      opts = {
-        log_level = 'DEBUG', -- or "TRACE"
-      },
       adapters = {
-        globant = function()
-          return require('codecompanion.adapters').extend('openai_compatible', {
-            name = 'globant',
-            env = {
-              url = 'https://api.clients.geai.globant.com',
-              api_key = apiKey,
-              chat_url = '/chat/completions',
-              models_endpoint = '/models',
-            },
-            schema = {
-              model = { default = 'awsbedrock/us.deepseek.r1-v1:0' },
-              num_ctx = {
-                default = 128000,
+        http = {
+          opts = {
+            log_level = 'DEBUG', -- or "TRACE"
+          },
+          globant = function()
+            return require('codecompanion.adapters').extend('openai_compatible', {
+              name = 'globant',
+              env = {
+                url = 'https://api.clients.geai.globant.com',
+                api_key = apiKey,
+                chat_url = '/chat/completions',
+                models_endpoint = '/models',
               },
-            },
-          })
-        end,
+              schema = {
+                model = { default = 'awsbedrock/us.deepseek.r1-v1:0' },
+                num_ctx = {
+                  default = 128000,
+                },
+              },
+            })
+          end,
+        },
       },
       strategies = {
         chat = {
