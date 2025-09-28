@@ -28,7 +28,7 @@ return {
   },
   config = function(_, opts)
     local options = vim.list_extend(opts, {
-      highlights = require('catppuccin.groups.integrations.bufferline').get_theme(),
+      highlights = require('catppuccin.special.bufferline').get_theme(),
     })
 
     require('bufferline').setup(options)

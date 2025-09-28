@@ -5,6 +5,10 @@ return {
     priority = 1000,
     config = function()
       require('catppuccin').setup {
+        float = {
+          transparent = true, -- enable transparent floating windows
+          solid = false, -- use solid styling for floating windows, see |winborder|
+        },
         integrations = {
           alpha = true,
           gitsigns = true,
