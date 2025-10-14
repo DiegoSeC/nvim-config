@@ -274,6 +274,18 @@ return {
 
       vim.lsp.enable(lsps)
 
+      local lspconfig = require 'lspconfig'
+
+      vim.lsp.config['ts_ls'] = {
+        root_dir = function(fname, on_dir)
+          vim.lsp.log.info('Finding root for ' .. fname)
+          local root = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')(fname)
+          on_dir(root)
+        end,
+      }
+
+      vim.lsp.enable 'ts_ls'
+
       -- require('mason-lspconfig').setup {
       --   ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
       --   automatic_enable = false,
