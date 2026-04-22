@@ -13,7 +13,7 @@ return {
   config = function()
     require('lualine').setup {
       options = {
-        theme = 'catppuccin',
+        theme = 'catppuccin-frappe',
       },
       extensions = { 'neo-tree' },
       sections = {
