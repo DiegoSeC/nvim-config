@@ -14,7 +14,7 @@ vim.diagnostic.config {
   underline = { severity = { min = vim.diagnostic.severity.WARN } },
 
   -- Can switch between these as you prefer
-  virtual_text = true, -- Text shows up at the end of the line
+  virtual_text = false, -- Disabled in favour of tiny-inline-diagnostic.nvim
   virtual_lines = false, -- Text shows up underneath the line, with virtual lines
 
   -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
@@ -85,14 +85,17 @@ vim.keymap.set('n', '<leader>c', '<Cmd>BufDel<CR>', { desc = 'Close Buffer' })
 vim.keymap.set('n', '<leader>cA', '<Cmd>BufDelAll<CR>', { desc = 'Close All Buffer' })
 
 -- Package Info
-vim.api.nvim_set_keymap('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>np', "<cmd>lua require('package-info').change_version()<cr>", { silent = true, noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>",
+  { silent = true, noremap = true, desc = 'Show package version' })
+vim.api.nvim_set_keymap('n', '<leader>np', "<cmd>lua require('package-info').change_version()<cr>",
+  { silent = true, noremap = true, desc = 'Change package version' })
 
 -- Comment
 vim.keymap.set('n', '<leader>/', function()
   require('Comment.api').toggle.linewise.count(vim.v.count1)
 end, { desc = 'Toggle comment line' })
-vim.keymap.set('x', '<leader>/', "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", { desc = 'Toggle comment for selection' })
+vim.keymap.set('x', '<leader>/', "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+  { desc = 'Toggle comment for selection' })
 
 -- Copilot
 vim.keymap.set('i', '<Tab>', function()
