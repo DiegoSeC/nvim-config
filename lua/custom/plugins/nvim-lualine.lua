@@ -7,6 +7,11 @@ local function show_macro_recording()
   end
 end
 
+-- Refresh lualine when macro recording starts/stops so the component updates
+vim.api.nvim_create_autocmd({ 'RecordingEnter', 'RecordingLeave' }, {
+  callback = function() require('lualine').refresh() end,
+})
+
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -24,17 +29,17 @@ return {
           {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
-            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+            symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
           },
         },
         lualine_c = {
           'filename',
           {
-            'macro-recording',
-            fmt = show_macro_recording,
+            function() return show_macro_recording() end,
+            cond = function() return vim.fn.reg_recording() ~= '' end,
           },
         },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' }, -- I added copilot here
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'copilot', 'progress' },
         lualine_z = { 'location' },
       },

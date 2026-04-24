@@ -23,10 +23,7 @@ return {
     mason = { 'shellcheck', 'shfmt', 'bash-language-server' },
     lsp = { 'bashls' },
   },
-  {
-    mason = { 'copilot-language-server' },
-    lsp = { 'copilot' },
-  },
+  -- copilot LSP removed: zbirenbaum/copilot.lua handles Copilot via its own mechanism
   {
     mason = { 'tailwindcss-language-server' },
     lsp = { 'tailwindcss' },

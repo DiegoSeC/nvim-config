@@ -7,8 +7,8 @@ return {
   -- Enable `lukas-reineke/indent-blankline.nvim`
   -- See `:help ibl`
   main = 'ibl',
+  event = 'BufReadPost',
   ---@module 'ibl'
   ---@type ibl.config
   opts = {},
-    lazy = true,
 }

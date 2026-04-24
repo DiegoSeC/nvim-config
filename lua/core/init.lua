@@ -8,8 +8,7 @@ function M.list_insert_unique(dst, src)
   if not dst then
     dst = {}
   end
-  -- TODO: remove check after dropping support for Neovim v0.9
-  assert((vim.islist or vim.tbl_islist)(dst), 'Provided table is not a list like table')
+  assert(vim.islist(dst), 'Provided table is not a list like table')
   local added = {}
   for _, val in ipairs(dst) do
     added[val] = true
@@ -44,21 +43,6 @@ end
 function M.plugin_opts(plugin)
   local spec = M.get_plugin(plugin)
   return spec and require('lazy.core.plugin').values(spec, 'opts') or {}
-end
-
-function M.dump(o)
-  if type(o) == 'table' then
-    local s = '{ '
-    for k, v in pairs(o) do
-      if type(k) ~= 'number' then
-        k = '"' .. k .. '"'
-      end
-      s = s .. '[' .. k .. '] = ' .. M.dump(v) .. ','
-    end
-    return s .. '} '
-  else
-    return tostring(o)
-  end
 end
 
 return M

@@ -19,7 +19,7 @@ return {
     end
     if vim.tbl_get(opts, 'mappings', 'extra') ~= false then
       vim.list_extend(keys, {
-        { vim.tbl_get(keys, 'extra', 'below') or 'gco', desc = 'Comment insert below' },
+        { vim.tbl_get(opts, 'extra', 'below') or 'gco', desc = 'Comment insert below' },
         { vim.tbl_get(opts, 'extra', 'above') or 'gcO', desc = 'Comment insert above' },
         { vim.tbl_get(opts, 'extra', 'eol') or 'gcA', desc = 'Comment insert end of line' },
       })

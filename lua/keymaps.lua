@@ -94,10 +94,10 @@ vim.keymap.set('n', '<leader>c', '<Cmd>BufDel<CR>', { desc = 'Close Buffer' })
 vim.keymap.set('n', '<leader>cA', '<Cmd>BufDelAll<CR>', { desc = 'Close All Buffer' })
 
 -- Package Info
-vim.api.nvim_set_keymap('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>",
-  { silent = true, noremap = true, desc = 'Show package version' })
-vim.api.nvim_set_keymap('n', '<leader>np', "<cmd>lua require('package-info').change_version()<cr>",
-  { silent = true, noremap = true, desc = 'Change package version' })
+vim.keymap.set('n', '<leader>ns', "<cmd>lua require('package-info').show()<cr>",
+  { silent = true, desc = 'Show package version' })
+vim.keymap.set('n', '<leader>np', "<cmd>lua require('package-info').change_version()<cr>",
+  { silent = true, desc = 'Change package version' })
 
 -- Comment
 vim.keymap.set('n', '<leader>/', function()
@@ -106,13 +106,9 @@ end, { desc = 'Toggle comment line' })
 vim.keymap.set('x', '<leader>/', "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
   { desc = 'Toggle comment for selection' })
 
--- Copilot
-vim.keymap.set('i', '<Tab>', function()
+-- Copilot: use <M-l> to accept suggestion to avoid conflicting with blink.cmp <Tab>
+vim.keymap.set('i', '<M-l>', function()
   if require('copilot.suggestion').is_visible() then
     require('copilot.suggestion').accept()
-  else
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Tab>', true, false, true), 'n', false)
   end
-end, {
-  silent = true,
-})
+end, { silent = true, desc = 'Accept Copilot suggestion' })

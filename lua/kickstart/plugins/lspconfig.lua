@@ -178,9 +178,7 @@ return {
           },
         },
         root_dir = function(fname, on_dir)
-          vim.lsp.log.info('Finding root for ' .. fname)
-          local root = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', 'eslint.config.js',
-            '.git')(fname)
+          local root = lspconfig.util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', 'eslint.config.js', '.git')(fname)
           on_dir(root)
         end,
       })

@@ -1,14 +1,13 @@
 return {
   'akinsho/bufferline.nvim',
-  dependencies = 'nvim-tree/nvim-web-devicons',
+  dependencies = { 'nvim-tree/nvim-web-devicons', 'catppuccin/nvim' },
   event = 'VeryLazy',
-  after = 'catppuccino.nvim',
   opts = {
     options = {
       -- stylua: ignore
-      close_command = function(n) require("mini.bufremove").delete(n, false) end,
+      close_command = function(n) vim.cmd('bdelete! ' .. n) end,
       -- stylua: ignore
-      right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+      right_mouse_command = function(n) vim.cmd('bdelete! ' .. n) end,
       diagnostics = 'nvim_lsp',
       always_show_bufferline = false,
       -- diagnostics_indicator = function(_, _, diag)
@@ -27,16 +26,13 @@ return {
     },
   },
   config = function(_, opts)
-    local options = vim.list_extend(opts, {
-      highlights = require('catppuccin.special.bufferline').get_theme(),
-    })
-
-    require('bufferline').setup(options)
+    opts.highlights = require('catppuccin.special.bufferline').get_theme()
+    require('bufferline').setup(opts)
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd('BufAdd', {
       callback = function()
         vim.schedule(function()
-          pcall(nvim_bufferline)
+          pcall(require('bufferline').refresh)
         end)
       end,
     })

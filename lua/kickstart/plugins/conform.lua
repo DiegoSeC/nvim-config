@@ -17,10 +17,6 @@ return {
     ---@type conform.setupOpts
     opts = {
       notify_on_error = false,
-      format = {
-        async = true,
-        lsp_fallback = true,
-      },
       format_on_save = function(bufnr)
         -- You can specify filetypes to autoformat on save here:
         local enabled_filetypes = {

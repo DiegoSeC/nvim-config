@@ -7,6 +7,9 @@ return {
   },
   opts = {
     default_component_configs = {
+      modified = {
+        symbol = '', -- disable the separate modified buffer indicator (git_status already shows this)
+      },
       git_status = {
         symbols = {
           -- Change type
@@ -58,7 +61,6 @@ return {
         end
       end,
       child_or_open = function(state)
-        vim.inspect(state)
         local node = state.tree:get_node()
         if node:has_children() then
           if not node:is_expanded() then -- if unexpanded, expand
@@ -94,7 +96,7 @@ return {
           return vals[val] ~= ''
         end, vim.tbl_keys(vals))
         if vim.tbl_isempty(options) then
-          --  astro.notify('No values to copy', vim.log.levels.WARN)
+          vim.notify('No values to copy', vim.log.levels.WARN)
           return
         end
         table.sort(options)
@@ -106,7 +108,7 @@ return {
         }, function(choice)
           local result = vals[choice]
           if result then
-            --   astro.notify(('Copied: `%s`'):format(result))
+            vim.notify(('Copied: `%s`'):format(result), vim.log.levels.INFO)
             vim.fn.setreg('+', result)
           end
         end)

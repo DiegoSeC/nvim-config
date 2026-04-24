@@ -5,7 +5,6 @@ return {
   opts = function()
     return {
       override = {
-        -- default_icon = { icon = require('astroui').get_icon 'DefaultFile' },
         deb = { icon = '', name = 'Deb' },
         lock = { icon = '󰌾', name = 'Lock' },
         mp3 = { icon = '󰎆', name = 'Mp3' },

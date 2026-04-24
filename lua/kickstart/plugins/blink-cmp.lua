@@ -5,6 +5,7 @@ return {
     'saghen/blink.cmp',
     event = 'VimEnter',
     version = '1.*',
+    opts_extend = { 'sources.default' },
     dependencies = {
       -- Snippet Engine
       {
