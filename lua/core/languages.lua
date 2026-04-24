@@ -16,7 +16,7 @@ return {
   {
     treesitter = { 'javascript', 'typescript', 'tsx', 'html', 'css' },
     mason = { 'typescript-language-server', 'eslint_d', 'prettier', 'prettierd', 'js-debug-adapter' },
-    lsp = { 'ts_ls', 'eslint' },
+    lsp = { 'ts_ls' },
   },
   {
     treesitter = { 'bash' },
