@@ -33,6 +33,7 @@ return {
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- Enable gitsigns recommended keymaps first
         { '<leader>b', group = '[B]uffer' },
         { '<leader>n', group = 'Package [N]ode' },
+        { '<leader>o', group = '[O]pencode', icon = '󰚩' },
         { 'gr', group = 'LSP Actions', mode = { 'n', 'x' } },
       },
     },
