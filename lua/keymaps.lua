@@ -106,9 +106,4 @@ end, { desc = 'Toggle comment line' })
 vim.keymap.set('x', '<leader>/', "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
   { desc = 'Toggle comment for selection' })
 
--- Copilot: use <M-l> to accept suggestion to avoid conflicting with blink.cmp <Tab>
-vim.keymap.set('i', '<M-l>', function()
-  if require('copilot.suggestion').is_visible() then
-    require('copilot.suggestion').accept()
-  end
-end, { silent = true, desc = 'Accept Copilot suggestion' })
+-- Copilot: Tab accepts suggestions

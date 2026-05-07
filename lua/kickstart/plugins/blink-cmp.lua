@@ -36,9 +36,6 @@ return {
     ---@type blink.cmp.Config
     opts = {
       keymap = {
-        -- 'super-tab': Tab accepts completions, navigates snippet placeholders,
-        -- and falls back to Copilot suggestion acceptance when menu is not open.
-        --
         -- All presets have the following mappings:
         -- <c-space>: Open menu or open docs if already open
         -- <c-n>/<c-p> or <up>/<down>: Select next/previous item
@@ -46,9 +43,9 @@ return {
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'super-tab',
+        preset = 'custom',
 
-        ['<Tab>'] = {
+        ['<C-y>'] = {
           function(cmp)
             if cmp.snippet_active() then
               return cmp.accept()
@@ -56,7 +53,11 @@ return {
               return cmp.select_and_accept()
             end
           end,
-          -- Fallback: accept Copilot suggestion if visible
+          'fallback',
+        },
+
+        -- Tab for Copilot suggestions
+        ['<Tab>'] = {
           function()
             local ok, suggestion = pcall(require, 'copilot.suggestion')
             if ok and suggestion.is_visible() then
