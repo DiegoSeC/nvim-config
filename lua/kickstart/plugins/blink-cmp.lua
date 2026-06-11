@@ -43,7 +43,7 @@ return {
         -- <c-k>: Toggle signature help
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
-        preset = 'custom',
+        preset = 'default',
 
         ['<C-y>'] = {
           function(cmp)

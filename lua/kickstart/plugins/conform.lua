@@ -18,7 +18,7 @@ return {
     opts = {
       notify_on_error = false,
       format_on_save = function(_bufnr)
-        return { timeout_ms = 500 }
+        return { timeout_ms = 3000 }
       end,
       default_format_opts = {
         lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
